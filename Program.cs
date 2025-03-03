@@ -1,8 +1,6 @@
 ﻿using TwitchLib.Api.Helix.Models.Bits.ExtensionBitsProducts;
 using TwitchLib.Api.Helix.Models.ChannelPoints.GetCustomReward;
 
-/// TODO: Add Randomike to credits since his channel was the testing playground
-/// (Many thanks mike, literally I could have not tested without a testing channel)
 class Program
 {
     private static string channelId = "<YOUR_CHANNEL_ID>";
