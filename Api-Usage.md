@@ -40,3 +40,6 @@ curl -X GET 'https://api.twitch.tv/helix/channel_points/custom_rewards?broadcast
 ```
 
 All of this can be made in Postman too though.
+
+![image](https://github.com/user-attachments/assets/6640621f-1590-4d00-84e0-d588e2e80078)
+![image](https://github.com/user-attachments/assets/6519db70-35ae-4ece-849b-230d0400bbae)
