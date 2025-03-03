@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Twitch_API</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TwitchLib.Api" Version="3.10.0-preview-e47ba7f" />
+    <PackageReference Include="TwitchLib.PubSub" Version="4.0.0-preview-f833b1ab1ebef37618dba3fbb1e0a661ff183af5" />
+  </ItemGroup>
+
+</Project>

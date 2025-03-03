@@ -1,0 +1,65 @@
+<doc>
+    <assembly>
+        <name>TwitchPubSubReader</name>
+    </assembly>
+    <members>
+        //* -------------------------------------------------------- Twitch PubSub Reader Class --------------------------------------------------------
+        <member name="T:TwitchPubSubReader">
+            <summary>
+            Listens to Twitch PubSub events for a specific channel
+            <para/> This class connects to Twitch PubSub and listens for events such as bits and channel points redemptions
+            <para/> <example>
+            <para/> This is an example of how to use the <c>TwitchPubSubReader</c> class
+                <code>
+                    var reader = new TwitchPubSubReader("channelId", "oauthToken");
+                </code>
+            </example>
+            </summary>
+        </member>
+
+        //* -------------------------------------------------------- Constructor --------------------------------------------------------
+        <member name="M:TwitchPubSubReader.#ctor">
+            <summary>
+            Initializes a new instance of the <c>TwitchPubSubReader</c> class
+            <para/> Connects to Twitch PubSub and subscribes to bits and channel points events
+            <para/> <example>
+            <para/> This is an example of how to instantiate the <c>TwitchPubSubReader</c>
+                <code>
+                    var reader = new TwitchPubSubReader("channelId", "oauthToken");
+                </code>
+            </example>
+            </summary>
+            <param name="channelId">The channel's numeric ID as a string</param>
+            <param name="oauthToken">The OAuth token for authentication</param>
+        </member>
+
+        //* -------------------------------------------------------- OnPubSubServiceConnected --------------------------------------------------------
+        <member name="M:TwitchPubSubReader.OnPubSubServiceConnected">
+            <summary>
+            Fired when the PubSub service connection is established
+            <para/> Subscribes to the desired topics using the provided OAuth token
+            </summary>
+        </member>
+
+        //* -------------------------------------------------------- OnListenResponse --------------------------------------------------------
+        <member name="M:TwitchPubSubReader.OnListenResponse">
+            <summary>
+            Provides feedback on the success of a listen request
+            </summary>
+        </member>
+
+        //* -------------------------------------------------------- OnBitsReceived --------------------------------------------------------
+        <member name="M:TwitchPubSubReader.OnBitsReceived">
+            <summary>
+            Handles bits events when a cheer occurs
+            </summary>
+        </member>
+
+        //* -------------------------------------------------------- OnChannelPointsRewardRedeemed --------------------------------------------------------
+        <member name="M:TwitchPubSubReader.OnChannelPointsRewardRedeemed">
+            <summary>
+            Handles channel points reward redemptions
+            </summary>
+        </member>
+    </members>
+</doc> 

@@ -1,0 +1,43 @@
+# Visual Studio Code
+.vscode/
+
+# Build artifacts
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userprefs
+*.csproj.user
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Backup files
+*.bak
+
+# IDE specific
+*.sln.ide
+
+# DotNet
+*.dotnet/
+
+# Others
+*.DS_Store
+Thumbs.db
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# Rider
+.idea/
+*.sln.iml
+
+# Visual Studio
+.vs/ 

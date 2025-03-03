@@ -1,0 +1,220 @@
+<doc>
+    <assembly>
+        <name>TwitchChannelPointsRewardsManager</name>
+    </assembly>
+    <members>
+        //* -------------------------------------------------------- Twitch Channel Points Rewards Manager Class --------------------------------------------------------
+        <member name="T:TwitchChannelPointsRewardsManager">
+            <summary>
+            Manages channel point rewards for a Twitch channel
+            <para/> This class provides methods to create, update, delete, and retrieve channel point rewards
+            <para/> It uses the Twitch API to perform operations on channel point rewards
+            <para/> <example>
+            <para/> This is an example of how to use the <c>TwitchChannelPointsRewardsManager</c> class
+                <code>
+                    var manager = new TwitchChannelPointsRewardsManager("channelId", "oauthToken", "clientId");
+                    await manager.CreateChannelPointReward("Test Reward", "Test Prompt", 100);
+                </code>
+            </example>
+            </summary>
+        </member>
+
+        //* -------------------------------------------------------- Create Channel Point Reward --------------------------------------------------------
+        <member name="M:TwitchChannelPointsRewardsManager.CreateChannelPointReward">
+            <summary>
+            Create a channel point reward
+            <para/> This method tries to create a <c>channel point reward</c> with the given parameters
+            <para/> If the reward is created successfully, it is added to the <c>CreatedRewards</c> list. If the reward is not created successfully, an exception is thrown
+            <para/> <see href="https://dev.twitch.tv/docs/api/reference/#create-custom-rewards"> Twitch API Reference </see>
+            <para/> <example>
+            <para/> This is an example of how to create a channel point reward
+                <code>
+                    await rewardsManager.CreateChannelPointReward(
+                        title: "Test Reward",
+                        prompt: "Test Prompt",
+                        cost: 100
+                    );
+                </code>
+            </example>
+            </summary>
+            <param name="title">The title of the reward</param>
+            <param name="prompt">The prompt of the reward</param>
+            <param name="cost">The cost of the reward</param>
+            <param name="backgroundColor">The background color of the reward</param>
+            <param name="isUserInputRequired">Whether the reward requires user input</param>
+            <param name="isMaxPerStreamEnabled">Whether the reward has a max per stream</param>
+            <param name="maxPerStream">The max per stream of the reward</param>
+            <param name="isMaxPerUserPerStreamEnabled">Whether the reward has a max per user per stream</param>
+            <param name="maxPerUserPerStream">The max per user per stream of the reward</param>
+            <param name="isGlobalCooldownEnabled">Whether the reward has a global cooldown</param>
+            <param name="globalCooldownSeconds">The global cooldown seconds of the reward</param>
+            <returns><see cref="RewardResponse"/></returns>
+        </member>
+
+        //* -------------------------------------------------------- Update Channel Point Reward --------------------------------------------------------
+        <member name="M:TwitchChannelPointsRewardsManager.UpdateChannelPointReward">
+            <summary>
+            Update a channel point reward
+            <para/> This method updates a <c>channel point reward</c> with the given parameters
+            <para/> If the reward is updated successfully, it is reflected in the <c>CreatedRewards</c> list. If the reward is not updated successfully, an exception is thrown
+            <para/> <see href="https://dev.twitch.tv/docs/api/reference/#update-custom-reward"> Twitch API Reference </see>
+            <para/> <example>
+            <para/> This is an example of how to update a channel point reward
+                <code>
+                    var reward = await rewardsManager.GetChannelPointRewardsByTitle("Example-Reward");   
+                    if (reward.IsSuccess)
+                    {
+                        await rewardsManager.UpdateChannelPointReward(
+                            rewardId: reward.Reward.Id,
+                            title: "Edited Test" + 1,
+                            prompt: "A edited reward",
+                            cost: 2
+                        );
+                    }
+                </code>
+            </example>
+            </summary>
+            <param name="rewardId">The ID of the reward to update</param>
+            <param name="title">The new title of the reward</param>
+            <param name="prompt">The new prompt of the reward</param>
+            <param name="cost">The new cost of the reward</param>
+            <param name="backgroundColor">The new background color of the reward</param>
+            <param name="isUserInputRequired">Whether the reward requires user input</param>
+            <param name="isMaxPerStreamEnabled">Whether the reward has a max per stream</param>
+            <param name="maxPerStream">The max per stream of the reward</param>
+            <param name="isMaxPerUserPerStreamEnabled">Whether the reward has a max per user per stream</param>
+            <param name="maxPerUserPerStream">The max per user per stream of the reward</param>
+            <param name="isGlobalCooldownEnabled">Whether the reward has a global cooldown</param>
+            <param name="globalCooldownSeconds">The global cooldown seconds of the reward</param>
+            <returns><see cref="RewardResponse"/></returns>
+        </member>
+
+        //* -------------------------------------------------------- Get Channel Point Rewards --------------------------------------------------------
+        <member name="M:TwitchChannelPointsRewardsManager.GetChannelPointRewards">
+            <summary>
+            Get all channel point rewards
+            <para/> This method retrieves all <c>channel point rewards</c> for the specified channel
+            <para/> <see href="https://dev.twitch.tv/docs/api/reference/#get-custom-reward"> Twitch API Reference </see>
+            <para/> <example>
+            <para/> This is an example of how to get all channel point rewards
+                <code>
+                    var rewards = await rewardsManager.GetChannelPointRewards();
+                </code>
+            </example>
+            </summary>
+            <returns><see cref="GetCustomRewardsResponse"/></returns>
+        </member>
+
+        //* -------------------------------------------------------- Get Channel Point Rewards By Title --------------------------------------------------------
+        <member name="M:TwitchChannelPointsRewardsManager.GetChannelPointRewardsByTitle">
+            <summary>
+            Get a channel point reward by title
+            <para/> This method retrieves a <c>channel point reward</c> by its title
+            <para/> If the reward is found, it is returned. If the reward is not found, an error message is returned
+            <para/> <see href="https://dev.twitch.tv/docs/api/reference/#get-custom-reward"> Twitch API Reference </see>
+            <para/> <example>
+            <para/> This is an example of how to get a channel point reward by title
+                <code>
+                    var reward = await rewardsManager.GetChannelPointRewardsByTitle("Test Reward");
+                </code>
+            </example>
+            </summary>
+            <param name="title">The title of the reward to retrieve</param>
+            <returns><see cref="RewardResponse"/></returns>
+        </member>
+
+        //* -------------------------------------------------------- Delete Channel Point Reward --------------------------------------------------------
+        <member name="M:TwitchChannelPointsRewardsManager.DeleteChannelPointReward">
+            <summary>
+            Delete a channel point reward
+            <para/> This method deletes a <c>channel point reward</c> with the given reward ID
+            <para/> If the reward is deleted successfully, a confirmation message is displayed. If the reward is not deleted successfully, an exception is thrown
+            <para/> It is recommended to use <c>GetChannelPointRewardsByTitle</c> to retrieve the reward and extract the ID before deletion
+            <para/> <see href="https://dev.twitch.tv/docs/api/reference/#delete-custom-reward"> Twitch API Reference </see>
+            <para/> <example>
+            <para/> This is an example of how to delete a channel point reward
+                <code>
+                    var reward = await rewardsManager.GetChannelPointRewardsByTitle("Test Reward");
+                    if (reward.IsSuccess)
+                    {
+                        await rewardsManager.DeleteChannelPointReward(reward.Reward.Id);
+                    }
+                </code>
+            </example>
+            </summary>
+            <param name="rewardId">The ID of the reward to delete</param>
+        </member>
+
+        //* -------------------------------------------------------- Clear Created Rewards --------------------------------------------------------
+        <member name="M:TwitchChannelPointsRewardsManager.ClearCreatedRewards">
+            <summary>
+            Clear all created rewards
+            <para/> This method removes all <c>channel point rewards</c> created by the manager
+            <para/> It is VERY IMPORTANT to call this after you are done with the program, otherwise you will have to delete the rewards manually
+            <para/> <example>
+            <para/> This is an example of how to clear all created rewards
+                <code>
+                    await rewardsManager.ClearCreatedRewards();
+                </code>
+            </example>
+            </summary>
+        </member>
+
+        //* -------------------------------------------------------- Reward Response --------------------------------------------------------
+        <member name="T:TwitchChannelPointsRewardsManager.RewardResponse">
+            <summary>
+            Represents the response from a channel point reward operation
+            <para/> This class is used by methods such as <c>CreateChannelPointReward</c>, <c>UpdateChannelPointReward</c>, and <c>GetChannelPointRewardsByTitle</c> to return the result of the operation
+            <para/> <example>
+            <para/> This is an example of how to use the <c>RewardResponse</c> class
+                <code>
+                    var response = await rewardsManager.CreateChannelPointReward("Test Reward", "Test Prompt", 100);
+                    if (response.IsSuccess)
+                    {
+                        Console.WriteLine("Reward created: " + response.Reward.Title);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error: " + response.ErrorMessage);
+                    }
+                </code>
+            </example>
+            </summary>
+        </member>
+
+        //* -------------------------------------------------------- Constructor --------------------------------------------------------
+        <member name="M:TwitchChannelPointsRewardsManager.#ctor">
+            <summary>
+            Initializes a new instance of the <c>TwitchChannelPointsRewardsManager</c> class
+            <para/> This constructor sets up the Twitch API client with the provided channel ID, OAuth token, and client ID
+            <para/> <example>
+            <para/> This is an example of how to instantiate the <c>TwitchChannelPointsRewardsManager</c>
+                <code>
+                    var manager = new TwitchChannelPointsRewardsManager("channelId", "oauthToken", "clientId");
+                </code>
+            </example>
+            </summary>
+            <param name="channelId">The ID of the channel to manage rewards for</param>
+            <param name="oauthToken">The OAuth token for the channel</param>
+            <param name="clientId">The client ID for the channel</param>
+        </member>
+
+        //* -------------------------------------------------------- Created Rewards --------------------------------------------------------
+        <member name="P:TwitchChannelPointsRewardsManager.CreatedRewards">
+            <summary>
+            This property stores a list of <c><see cref="CustomReward"/></c> objects that have been successfully created by the manager
+            <para/> It is used by methods such as <c>CreateChannelPointReward</c> and <c>UpdateChannelPointReward</c> to manage the rewards
+            <para/> <example>
+            <para/> This is an example of how to access the <c>CreatedRewards</c> property
+                <code>
+                    var rewards = rewardsManager.CreatedRewards;
+                    foreach (var reward in rewards)
+                    {
+                        Console.WriteLine("Reward: " + reward.Title);
+                    }
+                </code>
+            </example>
+            </summary>
+        </member>
+    </members>
+</doc> 
