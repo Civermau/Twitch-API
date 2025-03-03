@@ -19,7 +19,7 @@ This project is a C# application that interacts with the Twitch API to manage ch
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/Twitch-API.git
+   git clone https://github.com/Civermau/Twitch-API.git
    cd Twitch-API
    ```
 
