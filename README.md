@@ -2,6 +2,7 @@
 
 This project is a C# application that interacts with the Twitch API to manage channel points rewards and listen to PubSub events. It is designed to be used on bigger projects, this is more like a library
 ![image](https://github.com/user-attachments/assets/6196098a-7b6a-4191-818e-e7d01e3afa4d)
+![image](https://github.com/user-attachments/assets/b4373b89-0af3-4e4f-a22c-5f8747075bd6)
 
 ## Features
 
