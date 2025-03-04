@@ -117,8 +117,9 @@ public class TwitchChannelPointsRewardsManager
         bool? isGlobalCooldownEnabled = null,
         int? globalCooldownSeconds = null)
     {
-        
-        var reward = CreatedRewards.FirstOrDefault(reward => reward.Id == rewardId);
+        var rewards = await GetChannelPointRewards();
+        var reward = rewards.Data.FirstOrDefault(reward => reward.Id == rewardId);
+
         if (reward == null)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -131,26 +132,32 @@ public class TwitchChannelPointsRewardsManager
             };
         }
 
+        //This was a pain in the ass to figure out, since reward contains data in a different way than the request
         var ChannelPointsRequest = new UpdateCustomRewardRequest
         {
             Title = title ?? reward.Title,
             Prompt = prompt ?? reward.Prompt,
             Cost = cost ?? reward.Cost,
             IsEnabled = true,
-            BackgroundColor = backgroundColor ?? reward.BackgroundColor
+            BackgroundColor = backgroundColor ?? reward.BackgroundColor,
+            IsUserInputRequired = isUserInputRequired ?? reward.IsUserInputRequired,
+            IsMaxPerStreamEnabled = isMaxPerStreamEnabled ?? reward.MaxPerStreamSetting.IsEnabled,
+            MaxPerStream = maxPerStream ?? reward.MaxPerStreamSetting.MaxPerStream,
+            IsMaxPerUserPerStreamEnabled = isMaxPerUserPerStreamEnabled ?? reward.MaxPerUserPerStreamSetting.IsEnabled,
+            MaxPerUserPerStream = maxPerUserPerStream ?? reward.MaxPerUserPerStreamSetting.MaxPerUserPerStream,
+            IsGlobalCooldownEnabled = isGlobalCooldownEnabled ?? reward.GlobalCooldownSetting.IsEnabled,
+            GlobalCooldownSeconds = globalCooldownSeconds ?? reward.GlobalCooldownSetting.GlobalCooldownSeconds
         };
 
-        // TODO: Add cooldown later
         try
         {
             var response = await _api.Helix.ChannelPoints.UpdateCustomRewardAsync(_channelId, rewardId, ChannelPointsRequest);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Reward updated successfully. ID: " + response.Data[0].Id + " Title: " + response.Data[0].Title);
             Console.ResetColor();
-            CreatedRewards.Remove(reward);
+            
+            CreatedRewards.RemoveAll(r => r.Id == rewardId);
             CreatedRewards.Add(response.Data[0]);
-
-            // Update the reward in the list
 
             return new RewardResponse
             {

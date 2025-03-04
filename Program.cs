@@ -1,11 +1,11 @@
-﻿using TwitchLib.Api.Helix.Models.Bits.ExtensionBitsProducts;
-using TwitchLib.Api.Helix.Models.ChannelPoints.GetCustomReward;
+﻿using TwitchLib.Api.Helix.Models.ChannelPoints.GetCustomReward;
 
 class Program
 {
     private static string channelId = "<YOUR_CHANNEL_ID>";
     private static string oauthToken = "<YOUR_OAUTH_TOKEN>";
     private static string clientId = "<YOUR_CLIENT_ID>";
+
     static async Task Main(string[] args)
     {
         var bot = new TwitchPubSubReader(channelId, oauthToken);
